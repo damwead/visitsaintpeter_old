@@ -1,0 +1,1 @@
+web: gunicorn vsp.wsgi --log-file -
