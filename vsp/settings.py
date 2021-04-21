@@ -4,7 +4,6 @@ import django_heroku
 import dj_database_url
 from decouple import config
 
-
 # for secret key usage
 from dotenv import load_dotenv
 load_dotenv()
@@ -133,6 +132,5 @@ STATICFILES_DIRS = [
 
 # for heroku
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 
 django_heroku.settings(locals())
