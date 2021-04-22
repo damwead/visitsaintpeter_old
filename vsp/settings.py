@@ -16,7 +16,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['0.0.0.', 'localhost',
                  '127.0.0.1', 'visitsaintpeter.herokuapp.com']
@@ -77,6 +77,7 @@ DATABASES = {
     }
 }
 
+# for heroku
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
 
@@ -117,7 +118,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-# uploaded files from site
+# upload files to site
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
