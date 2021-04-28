@@ -16,7 +16,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['0.0.0.', 'localhost',
                  '127.0.0.1', 'visitsaintpeter.herokuapp.com']
