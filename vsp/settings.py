@@ -1,7 +1,9 @@
 from pathlib import Path
+
 import os
 import django_heroku
 import dj_database_url
+import psycopg2
 from decouple import config
 
 # for secret key usage
@@ -13,13 +15,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 SECRET_KEY = os.getenv('SECRET_KEY')
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+# EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 DEBUG = True
 
 ALLOWED_HOSTS = ['0.0.0.', 'localhost',
-                 '127.0.0.1', 'visitsaintpeter.herokuapp.com']
+                 'http://127.0.0.1:8000', 'visitsaintpeter.herokuapp.com']
 
 
 INSTALLED_APPS = [
@@ -36,8 +38,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -72,14 +74,20 @@ WSGI_APPLICATION = 'vsp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd7vhlpqt8sinl7',
+        'HOST': 'ec2-54-155-254-112.eu-west-1.compute.amazonaws.com',
+        'POST': 5432,
+        'USER': 'qpgsnakkxunbik',
+        'PASSWORD': '68942d694925c768d3574058752122a8cb265ad49b77dd0219d0013cb655a888'
     }
 }
 
+
 # for heroku
-db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db_from_env)
+# DATABASE_URL = os.environ['DATABASE_URL']
+# conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+# DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 
 # Password validation
