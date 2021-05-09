@@ -71,11 +71,11 @@ WSGI_APPLICATION = 'vsp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd7vhlpqt8sinl7',
+        'NAME': os.getenv('DB_NAME'),
         'HOST': 'ec2-54-155-254-112.eu-west-1.compute.amazonaws.com',
         'POST': 5432,
-        'USER': 'qpgsnakkxunbik',
-        'PASSWORD': '68942d694925c768d3574058752122a8cb265ad49b77dd0219d0013cb655a888',
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
         'CONN_MAX_AGE': 500
     }
 }
@@ -126,10 +126,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
+    os.path.join(BASE_DIR, 'static')  # TODO change to staticfiles
 ]
 
 # for heroku
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 django_heroku.settings(locals())
