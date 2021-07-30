@@ -2,6 +2,7 @@
 *.pot
 *.pyc
 *.idea
+*.DS_Store
 __pycache__/
 local_settings.py
 db.sqlite3
